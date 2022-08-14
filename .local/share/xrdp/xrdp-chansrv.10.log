@@ -1,9 +1,0 @@
-[20220315-06:31:43] [CORE ] main: app started pid 1354(0x0000054a)
-[20220315-06:31:43] [INFO ] main: DISPLAY env var set to :10.0
-[20220315-06:31:43] [INFO ] main: using DISPLAY 10
-[20220315-06:31:43] [INFO ] channel_thread_loop: thread start
-[20220315-06:31:43] [INFO ] Socket 12: AF_UNIX connection received
-[20220315-06:38:06] [INFO ] term_signal_handler: got signal 15
-[20220315-06:38:06] [INFO ] channel_thread_loop: g_term_event set
-[20220315-06:38:06] [INFO ] channel_thread_loop: thread stop
-[20220315-06:38:06] [INFO ] main: app exiting pid 1354(0x0000054a)
