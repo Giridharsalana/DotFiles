@@ -1,5 +1,5 @@
 #!/usr/bin/fish
-if not test -d ~/.ssh)
+if not test -d ~/.ssh
   mkdir ~/.ssh
 end
 ssh-keyscan github.com >> "$HOME/.ssh/known_hosts"
