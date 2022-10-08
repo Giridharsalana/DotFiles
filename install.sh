@@ -8,7 +8,7 @@ if set -q MY_SSH_KEY
   chmod 0600 "$HOME/.ssh/id_rsa"
 end
 
-if set -q CODESPACE_VSCODE_FOLDER
+if set -q CODESPACES
   find /workspaces/.codespaces/.persistedshare/dotfiles/ -mindepth 1 -maxdepth 1 -not -path "*/.git/*" -not -path "*.git" -not -path "*/install.sh" -not -path "*/README*" -print -exec cp -rsf {} ~/. \;
 end
 
