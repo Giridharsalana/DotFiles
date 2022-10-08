@@ -9,5 +9,5 @@ if set -q MY_SSH_KEY
 end
 
 if set -q CODESPACE_VSCODE_FOLDER
-  find /workspaces/.codespaces/.persistedshare/dotfiles/ -mindepth 1 -maxdepth 1 -not -path "*/.git/*" -not -path "*.git" -not -path "*/install.sh"  -print -exec cp -rsf {} ~/. \;
+  find /workspaces/.codespaces/.persistedshare/dotfiles/ -mindepth 1 -maxdepth 1 -not -path "*/.git/*" -not -path "*.git" -not -path "*/install.sh" -not -path "*/README*" -exec cp -rsf {} ~/. \;
 end
