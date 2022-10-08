@@ -11,3 +11,7 @@ end
 if set -q CODESPACE_VSCODE_FOLDER
   find /workspaces/.codespaces/.persistedshare/dotfiles/ -mindepth 1 -maxdepth 1 -not -path "*/.git/*" -not -path "*.git" -not -path "*/install.sh" -not -path "*/README*" -exec cp -rsf {} ~/. \;
 end
+
+if set -q GITPOD_USER
+  find ~/.dotfiles/ -mindepth 1 -maxdepth 1 -not -path "*/.git/*" -not -path "*.git" -not -path "*/install.sh" -not -path "*/README*" -exec cp -rsf {} ~/. \;
+end
