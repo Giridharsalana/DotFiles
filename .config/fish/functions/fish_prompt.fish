@@ -4,7 +4,7 @@ function fish_prompt --description 'Write out the prompt'
         else
             set FISH_USER $USER
         end
-        set FISH_USER $USER
+        
         printf '%s%s@%s%s %s%s%s > ' (set_color green) $FISH_USER (set_color red) $hostname \
             (set_color blue) (prompt_pwd) (set_color normal)
 end
