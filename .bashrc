@@ -116,4 +116,10 @@ if ! shopt -oq posix; then
   fi
 fi
 
-test -f ~/.aliases && source ~/.aliases
+PS1='\[[01;32m\]\u\[[00m\] \[[01;34m\]\w\[[00m\]$(__git_ps1 " (%s)") $ '
+
+for i in $(ls -A $HOME/.bashrc.d/); do source $HOME/.bashrc.d/$i; done
+
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
