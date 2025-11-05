@@ -1,5 +1,18 @@
 #!/usr/bin/fish
 
+# Set non-interactive mode to prevent prompts during package installation
+set -x DEBIAN_FRONTEND noninteractive
+set -x APT_LISTCHANGES_FRONTEND none
+set -x NEEDRESTART_MODE a
+
+# Configure dpkg to handle config file conflicts automatically (set once, applies to all commands)
+echo "Configuring dpkg for non-interactive mode..."
+sudo mkdir -p /etc/apt/apt.conf.d
+echo 'DPkg::Options { "--force-confdef"; "--force-confold"; }' | sudo tee /etc/apt/apt.conf.d/99force-confdef > /dev/null
+# Pre-configure debconf to keep existing config files when conflicts occur
+echo 'dpkg dpkg/conflicts-with-preinstalled-packages select keep' | sudo debconf-set-selections 2>/dev/null || true
+echo 'ucf ucf/changed_conf_in_new_version select keep' | sudo debconf-set-selections 2>/dev/null || true
+
 echo "========================================="
 echo "Starting Dotfiles Installation Script"
 echo "========================================="
@@ -89,7 +102,7 @@ echo ""
 # Package Management Setup
 echo "[4/6] Setting up package management..."
 echo "  ? Updating apt package list"
-if sudo apt update
+if sudo -E apt-get update -qq
   echo "  ? Apt package list updated"
 else
   echo "  ? Failed to update apt package list"
@@ -97,7 +110,7 @@ else
 end
 
 echo "  ? Installing nala package manager"
-if sudo apt install -y nala
+if sudo -E apt-get install -y -qq nala
   echo "  ? Nala installed successfully"
 else
   echo "  ? Failed to install nala"
@@ -105,7 +118,7 @@ else
 end
 
 echo "  ? Upgrading system packages with nala"
-if sudo nala upgrade -y
+if sudo -E nala upgrade -y --assume-yes
   echo "  ? System packages upgraded"
 else
   echo "  ? Failed to upgrade system packages"
@@ -113,7 +126,7 @@ else
 end
 
 echo "  ? Installing fish shell"
-if sudo nala install -y fish
+if sudo -E nala install -y --assume-yes fish
   echo "  ? Fish shell installed successfully"
 else
   echo "  ? Failed to install fish shell"
