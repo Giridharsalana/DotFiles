@@ -17,3 +17,10 @@ if set -q GITPOD_GIT_USER_NAME
   test -f ~/.bashrc && cp ~/.bashrc ~/.bashrc_gitpod_default_bkp
   find ~/.dotfiles/ -mindepth 1 -maxdepth 1 -not -path "*/.git/*" -not -path "*.git" -not -path "*/install.sh" -not -path "*/README*" -exec cp -rsf {} ~/. \;
 end
+
+# Setup the custom setup
+sudo apt update
+sudo apt install nala 
+sudo nala upgrade -y
+sudo nala install -y fish
+curl -LsSf https://astral.sh/uv/install.sh | sh
